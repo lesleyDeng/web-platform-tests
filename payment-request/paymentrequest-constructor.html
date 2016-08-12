@@ -298,17 +298,17 @@ for (var i in detailNames) {
     test(function() {
         new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'currency': ''}))
     }, `Empty currency code should not throw ("any string is considered valid") (${detailNames[i]})`)
+    test(function() {
+        // null gets stringified into 'null'
+        new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'currency': null}))
+    }, `Null currency code should not throw (${detailNames[i]})`)
 
     generate_tests(assert_throws, [
-        [`Null currency code should throw (${detailNames[i]})`, null, function() {
-            assert_true("PaymentRequest" in self);
-            new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'currency': null}))
-        }],
         [`Undefined currency code should throw (${detailNames[i]})`, null, function() {
             assert_true("PaymentRequest" in self);
+            // throws "required member currency is undefined"
             new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'currency': undefined}))
         }],
-
         // Invalid "value" field formats.
         [`Invalid "value" field "-" should throw (${detailNames[i]})`, null, function() {
             assert_true("PaymentRequest" in self);
@@ -364,6 +364,7 @@ for (var i in detailNames) {
         }],
         [`Undefined "value" field should throw (${detailNames[i]})`, null, function() {
             assert_true("PaymentRequest" in self);
+            // throws "required member value  is undefined"
             new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'value': undefined}))
         }],
     ]);
