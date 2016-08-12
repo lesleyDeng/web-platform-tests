@@ -282,28 +282,24 @@ generate_tests(assert_throws, [
 
 var detailNames = ['total', 'displayItems.0', 'shippingOptions.0', 'modifiers.0.total', 'modifiers.0.additionalDisplayItems.0'];
 for (var i in detailNames) {
+    // Non-ISO4217 currency code formats.
+    test(function() {
+        new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'currency': 'US1'}))
+    }, `Non-ISO4217 currency code US1 should not throw ("any string is considered valid") (${detailNames[i]})`)
+    test(function() {
+        new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'currency': 'US'}))
+    }, `Non-ISO4217 currency code US should not throw ("any string is considered valid") (${detailNames[i]})`)
+    test(function() {
+        new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'currency': 'USDO'}))
+    }, `Non-ISO4217 currency code USDO should not throw ("any string is considered valid") (${detailNames[i]})`)
+    test(function() {
+        new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'currency': 'usd'}))
+    }, `Non-ISO4217 currency code usd should not throw ("any string is considered valid") (${detailNames[i]})`)
+    test(function() {
+        new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'currency': ''}))
+    }, `Empty currency code should not throw ("any string is considered valid") (${detailNames[i]})`)
+
     generate_tests(assert_throws, [
-        // Invalid currency code formats.
-        [`Invalid currency code US1 should throw (${detailNames[i]})`, null, function() {
-            assert_true("PaymentRequest" in self);
-            new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'currency': 'US1'}))
-        }],
-        [`Invalid currency code US should throw (${detailNames[i]})`, null, function() {
-            assert_true("PaymentRequest" in self);
-            new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'currency': 'US'}))
-        }],
-        [`Invalid currency code USDO should throw (${detailNames[i]})`, null, function() {
-            assert_true("PaymentRequest" in self);
-            new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'currency': 'USDO'}))
-        }],
-        [`Invalid currency code usd should throw (${detailNames[i]})`, null, function() {
-            assert_true("PaymentRequest" in self);
-            new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'currency': 'usd'}))
-        }],
-        [`Empty currency code should throw (${detailNames[i]})`, null, function() {
-            assert_true("PaymentRequest" in self);
-            new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'currency': ''}))
-        }],
         [`Null currency code should throw (${detailNames[i]})`, null, function() {
             assert_true("PaymentRequest" in self);
             new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'currency': null}))
