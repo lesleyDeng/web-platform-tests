@@ -309,60 +309,60 @@ for (var i in detailNames) {
             new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'currency': undefined}))
         }],
 
-        // Invalid amount formats.
-        [`Invalid amount "-" should throw (${detailNames[i]})`, null, function() {
+        // Invalid "value" field formats.
+        [`Invalid "value" field "-" should throw (${detailNames[i]})`, null, function() {
             assert_true("PaymentRequest" in self);
             new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'value': '-'}))
         }],
-        [`Invalid amount "notdigits" should throw (${detailNames[i]})`, null, function() {
+        [`Invalid "value" field "notdigits" should throw (${detailNames[i]})`, null, function() {
             assert_true("PaymentRequest" in self);
             new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'value': 'notdigits'}))
         }],
-        [`Invalid amount "ALSONOTDIGITS" should throw (${detailNames[i]})`, null, function() {
+        [`Invalid "value" field "ALSONOTDIGITS" should throw (${detailNames[i]})`, null, function() {
             assert_true("PaymentRequest" in self);
             new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'value': 'ALSONOTDIGITS'}))
         }],
-        [`Invalid amount "10." should throw (${detailNames[i]})`, null, function() {
+        [`Invalid "value" field "10." should throw (${detailNames[i]})`, null, function() {
             assert_true("PaymentRequest" in self);
             new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'value': '10.'}))
         }],
-        [`Invalid amount ".99" should throw (${detailNames[i]})`, null, function() {
+        [`Invalid "value" field ".99" should throw (${detailNames[i]})`, null, function() {
             assert_true("PaymentRequest" in self);
             new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'value': '.99'}))
         }],
-        [`Invalid amount "-10." should throw (${detailNames[i]})`, null, function() {
+        [`Invalid "value" field "-10." should throw (${detailNames[i]})`, null, function() {
             assert_true("PaymentRequest" in self);
             new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'value': '-10.'}))
         }],
-        [`Invalid amount "-.99" should throw (${detailNames[i]})`, null, function() {
+        [`Invalid "value" field "-.99" should throw (${detailNames[i]})`, null, function() {
             assert_true("PaymentRequest" in self);
             new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'value': '-.99'}))
         }],
-        [`Invalid amount "10-" should throw (${detailNames[i]})`, null, function() {
+        [`Invalid "value" field "10-" should throw (${detailNames[i]})`, null, function() {
             assert_true("PaymentRequest" in self);
             new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'value': '10-'}))
         }],
-        [`Invalid amount "1-0" should throw (${detailNames[i]})`, null, function() {
+        [`Invalid "value" field "1-0" should throw (${detailNames[i]})`, null, function() {
             assert_true("PaymentRequest" in self);
             new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'value': '1-0'}))
         }],
-        [`Invalid amount "1.0.0" should throw (${detailNames[i]})`, null, function() {
+        [`Invalid "value" field "1.0.0" should throw (${detailNames[i]})`, null, function() {
             assert_true("PaymentRequest" in self);
             new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'value': '1.0.0'}))
         }],
-        [`Invalid amount "1/3" should throw (${detailNames[i]})`, null, function() {
+        [`Invalid "value" field "1/3" should throw (${detailNames[i]})`, null, function() {
             assert_true("PaymentRequest" in self);
             new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'value': '1/3'}))
         }],
-        [`Empty amount should throw (${detailNames[i]})`, null, function() {
+        [`Empty "value" field should throw (${detailNames[i]})`, null, function() {
             assert_true("PaymentRequest" in self);
             new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'value': ''}))
         }],
-        [`Null amount should throw (${detailNames[i]})`, null, function() {
+        [`Null "value" field should throw (${detailNames[i]})`, null, function() {
             assert_true("PaymentRequest" in self);
             new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'value': null}))
         }],
-        [`Undefined amount should throw (${detailNames[i]})`, null, function() {
+        [`Undefined "value" field should throw (${detailNames[i]})`, null, function() {
             assert_true("PaymentRequest" in self);
             new PaymentRequest([{'supportedMethods': ['foo']}], buildDetails(detailNames[i], {'value': undefined}))
         }],
